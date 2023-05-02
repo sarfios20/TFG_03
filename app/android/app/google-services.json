@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "229343237349",
+    "firebase_url": "https://tfg-ciclistas-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tfg-ciclistas",
+    "storage_bucket": "tfg-ciclistas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229343237349:android:cf7eda16c09d52e8f6f00c",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229343237349-ameja9f1b7apmeg7i6el4ig3j8b1ria2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeIKHdp31grWUiIzdoDzzOhQ2o25T2rc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229343237349-ameja9f1b7apmeg7i6el4ig3j8b1ria2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "229343237349-nrj41o35eccfgpd75vqg4hgj0eoait7v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

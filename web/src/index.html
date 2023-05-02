@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" type="module" defer></script>
+    <script src="./app/index.js" type="module" defer></script>
+</head>
+<body>
+    <div style="display: flex;">
+        <h2 id="singin-select">Sign In</h2>
+        <h2 id="singup-select">Sign Up</h2>
+    </div>
+    <div id="signup-div">
+        <form id="signup-form">
+            <label for="email">Email:</label>
+            <input type="email" id="signup-email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="signup-password" name="password" required>
+            <label for="password">Repeat password:</label>
+            <input type="password" id="signup-password-repeat" name="password" required>
+            <input type="submit" value="sign up">
+        </form>
+    </div>
+    <div id="signin-div">
+        <form id="signin-form">
+            <label for="email">Email:</label>
+            <input type="email" id="signin-email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="signin-password" name="password" required>
+            <input type="submit" value="sign in">
+        </form>
+    </div>
+</body>
+</html>
