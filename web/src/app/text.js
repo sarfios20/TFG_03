@@ -38,7 +38,26 @@ test.addEventListener('click', async (e) => {
     // Read all data from Firebase database
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val()
-        console.log(data) // Display the data in the console
+        const days = {};
+        for (const timestamp of Object.keys(data)) {
+            const day = Math.floor(timestamp / 86400000)
+            if (!days[day]) {
+              days[day] = [];
+            }
+            days[day].push(timestamp)
+        }
+        console.log(days);
+        /*const dayData = {}
+        for (const epoch of Object.keys(data)) {
+            const date = new Date(Number(epoch))
+            const day = date.getDate();
+            if (!dayData[day]) {
+                dayData[day] = []
+            }
+            dayData[day].push(data[epoch])
+        }
+        console.log(dayData);*/
+        //console.log(data) // Display the data in the console
     });
 })
 
