@@ -61,11 +61,15 @@ function reducciónMedia() {
         const data = snapshot.val()
         let reducciónMedia = 0
         for (const timestamp in data) {
-            let speed_alcance = data[timestamp]['speed_alcance'];
-            let speed_alerta = data[timestamp]['speed_alerta'];
+            let speed_alcance = data[timestamp]['speed_alcance']
+            let speed_alerta = data[timestamp]['speed_alerta']
+            console.log('---')
+            console.log( data[timestamp])
+
             reducciónMedia = reducciónMedia + speed_alerta - speed_alcance;           
         }
-        console.log(reducciónMedia/(Object.keys(data).length));
+        reducciónMedia = Math.round(reducciónMedia/(Object.keys(data).length))
+        console.log(reducciónMedia)
         //cool chart
         shame.innerText = `Average Speed Reduction: ${reducciónMedia * 3.6} km/h`
          // Display the data in the console
