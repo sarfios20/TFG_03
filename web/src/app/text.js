@@ -5,6 +5,7 @@ import { database } from "./firebase.js"
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
 console.log('text.js')
+let map, marker, bounds;
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -37,18 +38,35 @@ test.addEventListener('click', async (e) => {
     const dbRef = ref(database, '/Historico/'+auth.currentUser.uid) // Use '/' to refer to the root of the database
     // Read all data from Firebase database
     onValue(dbRef, (snapshot) => {
-        const data = snapshot.val()
-        const days = {};
+        const data = snapshot.val();
+        const locations = [];
         for (const timestamp of Object.keys(data)) {
-            const day = Math.floor(timestamp / 86400000)
-            if (!days[day]) {
-              days[day] = [];
-            }
-            const location = {timestamp, ...data[timestamp]} // include timestamp in the location object
-            days[day].push(location)
-            
+            const location = {timestamp, ...data[timestamp]};
+            locations.push(location);
         }
-        console.log(days);
+        // Sort locations by timestamp
+        locations.sort((a, b) => a.timestamp - b.timestamp);
+
+        gsap.to({}, {
+            duration: 1,
+            repeat: 0,
+            onRepeat: () => {
+                const location = locations.shift();
+                if (location) {
+                    const latLng = new google.maps.LatLng(location.Lat, location.Lon);
+                    if (!marker) {
+                        marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map
+                        });
+                    } else {
+                        marker.setPosition(latLng);
+                    }
+                    bounds.extend(latLng);
+                    map.fitBounds(bounds);
+                }
+            }
+        });
     });
 })
 
@@ -57,10 +75,11 @@ window.initMap = function initMap() {
     var center = {lat: 40.73877, lng: -3.8235};
 
     // Create a new Google Map instance
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: center
     });
+    bounds = new google.maps.LatLngBounds();
 }
 //esto es temporal
 function reducciónMedia() {
