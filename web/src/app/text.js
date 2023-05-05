@@ -46,6 +46,7 @@ test.addEventListener('click', async (e) => {
             }
             const location = {timestamp, ...data[timestamp]} // include timestamp in the location object
             days[day].push(location)
+            
         }
         console.log(days);
     });
