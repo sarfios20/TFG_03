@@ -23,7 +23,11 @@ Overall, great job! Your code looks well-structured and easy to read, and I'm su
 */
 
 
-
+function enableSpecificDates() {
+    var availableDates = ['2023-05-10', '2023-05-15', '2023-05-20'];
+    var dateString = availableDates.toISOString().slice(0,10);
+    return availableDates.indexOf(dateString) !== -1;
+  }
 
 console.log('text.js')
 let map, marker, bounds;
@@ -31,6 +35,10 @@ let map, marker, bounds;
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         reducciónMedia()
+        var datepicker = document.getElementById('datepicker');
+        datepicker.datepicker({
+            beforeShowDay: enableSpecificDates
+        })
     }
 })
 
