@@ -4,6 +4,27 @@ import { auth } from "./firebase.js"
 import { database } from "./firebase.js"
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
+/*
+
+Overall, your code looks well-structured and easy to read. Here are a few points to consider:
+
+Consider using module syntax instead of importing directly from URLs. Using URLs to import modules can pose security risks and make it harder to cache dependencies. Instead, it's recommended to use a package manager like npm to manage your dependencies and import them using the import statement.
+
+It's good that you're using async/await with Firebase's signOut function. However, you can also consider using try/catch blocks to handle any potential errors that may occur during the sign-out process.
+
+You're using gsap to animate the map markers. While it's a powerful animation library, it may be overkill for this particular use case. You could consider using the setInterval function to loop through the locations array and update the marker position every second.
+
+Your reducciónMedia function is doing multiple things, including calculating the average speed reduction and updating the DOM with the result. It's generally good practice to separate concerns and have functions that do one thing well. Consider breaking up the functionality into separate functions, for example, one to calculate the average speed reduction and another to update the DOM.
+
+Consider adding comments to your code to make it easier for other developers (or your future self) to understand what's going on. While your code is easy to read, adding comments can help clarify any confusing sections or provide context for why certain decisions were made.
+
+Overall, great job! Your code looks well-structured and easy to read, and I'm sure it will be easy to maintain and build upon in the future.
+
+*/
+
+
+
+
 console.log('text.js')
 let map, marker, bounds;
 
