@@ -5,27 +5,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGoaO3KdtTWSkpd9C3U9whxkGeinP6G9s" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
-
-    <script>
-        $(function() {
-            var availableDates = ['2023-05-10', '2023-05-15', '2023-05-20'];
-
-            function enableSpecificDates(date) {
-                var dateString = $.datepicker.formatDate('yy-mm-dd', date);
-                return [availableDates.indexOf(dateString) != -1];
-            }
-
-            $('#datepicker').datepicker({
-                beforeShowDay: enableSpecificDates
-            });
-        });
-    </script>
-
-
     <script src="main.js" type="module" defer></script>
     <script src="./app/text.js" type="module"></script>
 </head>
