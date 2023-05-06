@@ -49,7 +49,7 @@ test.addEventListener('click', async (e) => {
 
         gsap.to({}, {
             duration: 1,
-            repeat: 0,
+            repeat: locations.length,
             onRepeat: () => {
                 const location = locations.shift();
                 if (location) {
