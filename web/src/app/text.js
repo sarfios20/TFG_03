@@ -7,18 +7,22 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-
 console.log('text.js')
 let map, marker, bounds;
 
+function selected (selectedDates, dateStr, instance) {
+    console.log("Selected date: ", dateStr);
+    // Do something else here with the selected date
+  }
 
-var validDates = ["2023-05-10", "2023-05-12", "2023-05-15", "2023-05-17"]
-flatpickr("#test", {
-    inline: true,
-    enable: validDates
-});
+
+
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         reducciónMedia()
+        chavo()
     }
 })
+
+
 
 const logout = document.getElementById('logout-button')
 
@@ -28,8 +32,30 @@ logout.addEventListener('click', async (e) => {
 })
 
 
-console.log(database);
-
+function chavo(){
+    const dbRef = ref(database, '/Historico/'+auth.currentUser.uid) // Use '/' to refer to the root of the database
+    // Read all data from Firebase database
+    onValue(dbRef, (snapshot) => {
+        const data = snapshot.val()
+        const days = {};
+        for (const timestamp of Object.keys(data)) {
+            const date = new Date(parseInt(timestamp))
+            const day = formatDate(date)
+            if (!days[day]) {
+                days[day] = [];
+            }
+            const location = {timestamp, ...data[timestamp]} // include timestamp in the location object
+            days[day].push(location)
+        }
+        var dates = Object.keys(days); // get an array of the date strings
+        var validDates = dates.map((date) => new Date(date))
+        var picker = flatpickr("#datepicker", {
+            inline: true,
+            enable: validDates,
+            onChange: selected,
+        });
+    });
+}
 
 
 const test = document.getElementById('test')
@@ -104,3 +130,13 @@ function reducciónMedia() {
     });
 }
 
+function formatDate(date) {
+    const year = date.getFullYear()
+    const month = padZero(date.getMonth() + 1)
+    const day = padZero(date.getDate())
+    return `${year}-${month}-${day}`
+}
+
+function padZero(num) {
+    return num < 10 ? `0${num}` : num
+}
