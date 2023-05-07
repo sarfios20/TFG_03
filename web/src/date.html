@@ -1,33 +1,22 @@
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Datepicker - Display inline</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script>
-    $(function() {
-    var availableDates = ['2023-05-10', '2023-05-15', '2023-05-20'];
-
-    function enableSpecificDates(date) {
-        var dateString = $.datepicker.formatDate('yy-mm-dd', date);
-        return [availableDates.indexOf(dateString) != -1];
-    }
-
-    $('#datepicker').datepicker({
-        beforeShowDay: enableSpecificDates
-    });
-    });
-  </script>
+  <title>Flatpickr Example</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
- 
-Date: <div id="datepicker"></div>
- 
- 
+  <h1>Flatpickr Example</h1>
+  <div id="test"></div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+     var validDates = ["2023-05-10", "2023-05-12", "2023-05-15", "2023-05-17"];
+    flatpickr("#test", {
+      inline: true,
+      enable: validDates
+    });
+  </script>
 </body>
 </html>
