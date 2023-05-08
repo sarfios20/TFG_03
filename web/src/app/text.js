@@ -6,9 +6,10 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-
 
 console.log('text.js')
 let map, marker, bounds;
-
+let days = {}
 function selected (selectedDates, dateStr, instance) {
     console.log("Selected date: ", dateStr);
+    console.log(days[dateStr])
     // Do something else here with the selected date
   }
 
@@ -37,7 +38,7 @@ function chavo(){
     // Read all data from Firebase database
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val()
-        const days = {};
+        days = {};
         for (const timestamp of Object.keys(data)) {
             const date = new Date(parseInt(timestamp))
             const day = formatDate(date)
@@ -140,3 +141,20 @@ function formatDate(date) {
 function padZero(num) {
     return num < 10 ? `0${num}` : num
 }
+
+/*
+
+To animate a route on a map, you can use a combination of HTML, CSS, and JavaScript. Here are the steps you can follow:
+
+Set up the map: You can use a popular mapping library like Google Maps or Mapbox to display the map. You will need to add the necessary libraries and API keys to your project.
+
+Draw the route: You can use the mapping library's built-in functionality to draw the route on the map. This can be done using polylines or markers.
+
+Add the animation: To create a cool looking animation, you can use CSS animations or JavaScript animations. One way to do this is to create a custom marker icon and animate its position along the route. You can use the CSS transform property to smoothly move the marker from one point to another. Another approach is to use JavaScript to animate the polyline's stroke color or opacity, giving the appearance of a moving line.
+
+Add interactivity: You can enhance the animation by adding interactivity. For example, you could allow the user to control the speed of the animation, pause or rewind the animation, or toggle between different routes.
+
+Test and refine: Once you have the basic animation working, test it on different devices and browsers to ensure it works as expected. Refine the animation as needed to improve its performance and visual appeal.
+
+Overall, animating a route on a map can be a fun and challenging project for a front-end developer. By following these steps, you can create a cool looking animation that engages and impresses users.
+*/
