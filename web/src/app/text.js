@@ -35,7 +35,7 @@ function selected (selectedDates, dateStr, instance) {
     if (count == 0) {
         clearInterval(interval);
     }
-    }, 1000);
+    }, 700);
 
 
     // Do something else here with the selected date
