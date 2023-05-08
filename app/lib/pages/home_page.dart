@@ -15,6 +15,7 @@ import 'package:app/utils/type.dart';
 import 'package:app/models/user_model.dart';
 import 'package:app/models/incidente_model.dart';
 import 'package:app/utils/zone.dart';
+import 'package:flutter_background/flutter_background.dart';
 
 class MapScreen extends ConsumerStatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
