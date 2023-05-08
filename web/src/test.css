@@ -79,10 +79,13 @@ body {
     cursor: pointer;
   }
   
-  #singup-select {
-    border-bottom: 2px solid #FF5722;
+  #signup-select {
+    border-bottom: 3px solid transparent;
   }
   
+  #signup-select.selected {
+    border-bottom-color: red;
+  }
   /* Style the datepicker */
   #datepicker {
     margin-top: 24px;
@@ -123,3 +126,30 @@ body {
     margin-top: 24px;
     padding: 12px 24px;
     font-size: 18px;
+  }
+
+#singin-select,
+#singup-select {
+    cursor: pointer;
+    position: relative;
+}
+
+#singin-select::after,
+#singup-select::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+#singin-select:hover::after,
+#singup-select:hover::after,
+#singin-select:focus::after,
+#singup-select:focus::after {
+    transform: scaleX(1);
+}
