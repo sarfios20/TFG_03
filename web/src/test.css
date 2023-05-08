@@ -1,0 +1,125 @@
+/* Set the font family for the entire page */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  
+  /* Set the background color */
+  body {
+    background-color: #F5F5F5;
+  }
+  
+  /* Style the headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
+  h2 {
+    font-size: 28px;
+  }
+  
+  h3 {
+    font-size: 24px;
+  }
+  
+  /* Style the links */
+  a {
+    color: #FF5722;
+  }
+  
+  /* Style the buttons */
+  button, input[type="submit"] {
+    border: none;
+    background-color: #FF5722;
+    color: #FFF;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button:hover, input[type="submit"]:hover {
+    background-color: #FF7043;
+  }
+  
+  /* Style the form inputs */
+  input[type="text"], input[type="email"], input[type="password"] {
+    border: none;
+    background-color: #FFF;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  
+  input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  }
+  
+  /* Style the sign-in/sign-up divs */
+  #signup-div, #signin-div {
+    margin-top: 24px;
+    padding: 24px;
+    background-color: #FFF;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Style the select buttons */
+  #singin-select, #singup-select {
+    margin-right: 24px;
+    padding: 12px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  #singup-select {
+    border-bottom: 2px solid #FF5722;
+  }
+  
+  /* Style the datepicker */
+  #datepicker {
+    margin-top: 24px;
+  }
+  
+  .flatpickr-input {
+    border: none;
+    background-color: #FFF;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  
+  .flatpickr-input:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  }
+  
+  /* Style the logout button */
+  #logout-button {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #FFF;
+    background-color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  #logout-button:hover {
+    background-color: #555;
+  }
+  
+  /* Style the test button */
+  #test {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 18px;
