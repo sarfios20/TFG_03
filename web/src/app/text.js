@@ -8,10 +8,38 @@ console.log('text.js')
 let map, marker, bounds;
 let days = {}
 function selected (selectedDates, dateStr, instance) {
+    
     console.log("Selected date: ", dateStr);
     console.log(days[dateStr])
+    let positions = []
+    positions = days[dateStr].map(num => ({ lat: num['Lat'], lng: num['Lon'] }))
+    console.log(positions)
+
+    var polyline = new google.maps.Polyline({
+        path: positions,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    })
+      
+    polyline.setMap(map)
+
+
+    var count = 0;
+    var path = polyline.getPath().getArray();
+    var interval = setInterval(function() {
+    count = (count + 1) % path.length;
+    var newPath = path.slice(0, count);
+    polyline.setPath(newPath);
+    if (count == 0) {
+        clearInterval(interval);
+    }
+    }, 100);
+
+
     // Do something else here with the selected date
-  }
+}
 
 
 
