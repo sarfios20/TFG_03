@@ -7,6 +7,19 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-
 let map, marker, bounds;
 let days = {}
 
+window.initMap = function initMap() {
+    console.log('initMap');
+    var center = {lat: 40.73877, lng: -3.8235};
+
+    // Create a new Google Map instance
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: center
+    });
+    bounds = new google.maps.LatLngBounds();
+    console.log(map)
+}
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         numeroAvisosRecibidos()
