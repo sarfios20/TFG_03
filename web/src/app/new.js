@@ -5,14 +5,31 @@ import { database } from "./firebase.js"
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"
 
 let map, marker, bounds;
+let heatMap
 let days = {}
 
-window.initMap = function initMap() {
-    console.log('initMap');
+window.initMaps = function initMaps() {
+    initMap()
+    initMapHeat()
+}
+
+function initMap() {
     var center = {lat: 40.73877, lng: -3.8235};
 
     // Create a new Google Map instance
     map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: center
+    });
+    bounds = new google.maps.LatLngBounds();
+    console.log(map)
+}
+
+function initMapHeat() {
+    var center = {lat: 40.73877, lng: -3.8235};
+
+    // Create a new Google Map instance
+    heatMap = new google.maps.Map(document.getElementById('heat_map'), {
         zoom: 12,
         center: center
     });
