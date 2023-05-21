@@ -9,6 +9,7 @@ let heatMap
 let days = {}
 
 window.initMaps = function initMaps() {
+    console.log("initMaps")
     initMap()
     initMapHeat()
 }
