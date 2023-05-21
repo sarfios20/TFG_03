@@ -12,23 +12,30 @@
     <link rel="stylesheet" type="text/css" href="new.css">
     <link rel="stylesheet" type="text/css" href="othercss.css">
 
+    <script src="./app/new.js" type="module"></script>
+
 </head>
 <body onload="initMap()">
     <div class="container">
         <div class="row">
           <div class="square">
             <div class="content">
-              <h2>1</h2>
+              <h2>coche</h2>
+              <p id="avisos-recibidos">nº avisos</p>
+              <p id="shame">reducción de velocidad</p>
             </div>
           </div>
           <div class="square">
             <div class="content">
-              <h2>2</h2>
+              <h2>Bici</h2>
+              <p id="avisos-emitidos">nº avisos</p>
+              <p>reducción de velocidad</p>
             </div>
           </div>
           <div class="square">
             <div class="content">
-              <h2>3</h2>
+              <h2>Calendario</h2>
+              <div style="visibility: hidden;" id="datepicker"></div>
             </div>
           </div>
         </div>
