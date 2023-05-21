@@ -9,19 +9,47 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <link rel="stylesheet" href="test.css">
-    
-    <script src="main.js" type="module" defer></script>
-    <script src="./app/dashboard.js" type="module"></script>
+    <link rel="stylesheet" type="text/css" href="new.css">
     <link rel="stylesheet" type="text/css" href="othercss.css">
 
+    <script src="./app/new.js" type="module"></script>
+
 </head>
-<body onload="initMap()">
-    <h2>Rutas</h2>
-    <div style="visibility: hidden;" id="datepicker"></div>
-    <div id="map" style="height: 500px"></div>
-    <h2>reducción de velocidad media</h2>
-    <div id="shame"></div>
-    <input id='logout-button' type="submit" value="logout">
-    <input id='test' type="submit" value="test">
+<body onload="initMaps()">
+    <div class="container">
+        <div class="row">
+          <div class="square">
+            <div class="content">
+              <h2>coche</h2>
+              <p id="avisos-recibidos">nº avisos</p>
+              <p id="shame">reducción de velocidad</p>
+            </div>
+          </div>
+          <div class="square">
+            <div class="content">
+              <h2>Bici</h2>
+              <p id="avisos-emitidos">nº avisos</p>
+              <p id="reduccion">reducción de velocidad</p>
+            </div>
+          </div>
+          <div class="square">
+            <div class="content">
+              <h2>Calendario</h2>
+              <div style="visibility: hidden;" id="datepicker"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Checkear -->
+        <div id="map" style="height: 500px"></div>
+        <br>
+        <div id="heat_map" style="height: 500px"></div>
+        <input id='logout-button' type="submit" value="logout">
+        <div class="row">
+          
+        </div>
+        <div class="row">
+          <div class="rectangle"></div>
+        </div>
+    </div>
 </body>
 </html>
