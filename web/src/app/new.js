@@ -12,6 +12,7 @@ onAuthStateChanged(auth, async (user) => {
         numeroAvisosRecibidos()
         numeroAvisosEmitidos()
         reducciónMediaCoche()
+        reducciónMediaBici()
         calendario()
     }
 })
@@ -51,9 +52,24 @@ function reducciónMediaCoche() {
             reducciónMedia = reducciónMedia + speed_alerta - speed_alcance;           
         }
         reducciónMedia = Math.round(reducciónMedia/(Object.keys(data).length))
-        //cool chart
         shame.innerText = `reducción de velocidad: ${reducciónMedia * 3.6} km/h`
-         // Display the data in the console
+    });
+}
+
+function reducciónMediaBici() {
+    const reduccion = document.getElementById('reduccion')
+    const dbRef = ref(database, '/Alcance/Ciclistas/'+auth.currentUser.uid) 
+    onValue(dbRef, (snapshot) => {
+        const data = snapshot.val()
+        let reducciónMedia = 0
+        for (const timestamp in data) {
+            let speed_alcance = data[timestamp]['speed_alcance']
+            let speed_alerta = data[timestamp]['speed_alerta']
+
+            reducciónMedia = reducciónMedia + speed_alerta - speed_alcance;           
+        }
+        reducciónMedia = Math.round(reducciónMedia/(Object.keys(data).length))
+        reduccion.innerText = `reducción de velocidad: ${reducciónMedia * 3.6} km/h`
     });
 }
 
