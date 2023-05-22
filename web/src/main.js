@@ -2,6 +2,7 @@ import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.2/fir
 import { auth } from "./app/firebase.js"
 
 onAuthStateChanged(auth, async (user) => {
+    console.log(user)
     if (user) {
         if (window.location.pathname !== '/src/dashboard.html') {
             window.location.href = "dashboard.html"

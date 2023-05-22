@@ -38,6 +38,10 @@ function initMapHeat() {
     console.log(map)
 }
 
+function heatMapData() {
+    
+}
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         numeroAvisosRecibidos()
@@ -174,6 +178,6 @@ function selected (selectedDates, dateStr, instance) {
 const logout = document.getElementById('logout-button')
 
 logout.addEventListener('click', async (e) => {
-    console.log('logout');
+    console.log('logo-ut');
     await signOut(auth)
 })
