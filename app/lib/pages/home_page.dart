@@ -24,7 +24,7 @@ class MapScreen extends ConsumerStatefulWidget {
   _MapScreenState createState() => _MapScreenState();
 }
 
-class _MapScreenState extends ConsumerState<MapScreen> {
+class _MapScreenState extends ConsumerState<MapScreen> with WidgetsBindingObserver {
 
   DatabaseReference updateHistorico = FirebaseDatabase.instance.ref("Historico");
   
@@ -64,7 +64,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   late GoogleMapController _googleMapController;
 
   Future<void> signOut() async{
-
+    print("----------");
     cancelSubscriptions(UserType.Ciclista);
     cancelSubscriptions(UserType.Conductor);
     removeUserFromDB(type, currentZone);
@@ -355,6 +355,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(12, 12)),
         'assets/pedal_bike.png')
         .then((d) {
@@ -403,7 +404,19 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     _googleMapController.dispose();
     cancelSubscriptions(UserType.Ciclista);
     cancelSubscriptions(UserType.Conductor);
+    signOut();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if(state != AppLifecycleState.resumed){
+      removeUserFromDB(type, currentZone);
+    }else{
+      updatePositionDB();
+    }
   }
 
   @override
