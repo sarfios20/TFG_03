@@ -59,7 +59,7 @@ function numeroAvisosRecibidos() {
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
         const numAvisos = Object.keys(data).length;
-        avisosRecibidos.innerHTML = `nº avisos: ${numAvisos}`;
+        avisosRecibidos.innerHTML = `nº avisos recibidos: ${numAvisos}`;
     })
 }
 
@@ -70,7 +70,7 @@ function numeroAvisosEmitidos() {
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
         const numAvisos = Object.keys(data).length;
-        avisosRecibidos.innerHTML = `nº avisos: ${numAvisos}`;
+        avisosRecibidos.innerHTML = `nº avisos emitidos: ${numAvisos}`;
     })
 }
 
