@@ -153,3 +153,36 @@ body {
 #singup-select:focus::after {
     transform: scaleX(1);
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form label {
+  margin-bottom: 8px;
+}
+
+form input[type="email"],
+form input[type="password"],
+form input[type="submit"] {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+#signup-div, #signin-div {
+  margin-top: 24px;
+  padding: 24px;
+  background-color: #FFF;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  max-width: 400px; /* Adjust the value as needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#title-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
