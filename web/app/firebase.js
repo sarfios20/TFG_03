@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
-console.log('Hello world')
 // Your web app's Firebase configuration
 const firebaseConfig = {
    apiKey: "AIzaSyAelV_hXHuGRUA9aoGEtZc4_LjWXXlpzQ8",

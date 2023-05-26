@@ -9,7 +9,6 @@ let heatMap
 let days = {}
 
 window.initMaps = function initMaps() {
-    console.log("initMaps")
     initMap()
     initMapHeat()
 }
@@ -23,7 +22,6 @@ function initMap() {
         center: center
     });
     bounds = new google.maps.LatLngBounds();
-    console.log(map)
 }
 
 function initMapHeat() {
@@ -35,7 +33,6 @@ function initMapHeat() {
         center: center
     });
     bounds = new google.maps.LatLngBounds();
-    console.log(map)
 }
 
 function heatMapData() {
@@ -55,7 +52,6 @@ onAuthStateChanged(auth, async (user) => {
 function numeroAvisosRecibidos() {
     let avisosRecibidos = document.getElementById('avisos-recibidos')
     const dbRef = ref(database, '/Alertas/Conductor/'+auth.currentUser.uid) 
-    console.log(dbRef)
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
         const numAvisos = Object.keys(data).length;
@@ -66,7 +62,6 @@ function numeroAvisosRecibidos() {
 function numeroAvisosEmitidos() {
     let avisosRecibidos = document.getElementById('avisos-emitidos')
     const dbRef = ref(database, '/Alertas/Ciclista/'+auth.currentUser.uid) 
-    console.log(dbRef)
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
         const numAvisos = Object.keys(data).length;
