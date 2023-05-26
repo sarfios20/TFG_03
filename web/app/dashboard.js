@@ -4,7 +4,7 @@ import { auth } from "./firebase.js"
 import { database } from "./firebase.js"
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"
 
-let map, marker, bounds;
+let map
 let heatMap
 let days = {}
 
@@ -20,8 +20,7 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: center
-    });
-    bounds = new google.maps.LatLngBounds();
+    })
 }
 
 function initMapHeat() {
@@ -31,13 +30,41 @@ function initMapHeat() {
     heatMap = new google.maps.Map(document.getElementById('heat_map'), {
         zoom: 12,
         center: center
-    });
-    bounds = new google.maps.LatLngBounds();
+    })
+    heatMapData()
+    
 }
 
 function heatMapData() {
-    
-}
+    console.log('heatMapData');
+    const dbRef = ref(database, '/Conductor/');
+    let dataCondutor = {};
+    onValue(dbRef, (snapshot) => {
+      const data = snapshot.val();
+      for (const zone in data) {
+        for (const uid in data[zone]) {
+          dataCondutor[uid] = data[zone][uid];
+        }
+      }
+  
+      const heatmapData = Object.values(dataCondutor).map(item => ({
+        location: new google.maps.LatLng(item.latitude, item.longitude),
+        weight: item.intensity,
+      }));
+  
+      console.log(heatmapData);
+  
+      // Call the function to create the heatmap layer with the data
+      createHeatmapLayer(heatmapData);
+    });
+  }
+
+function createHeatmapLayer(data) {
+    const heatmapLayer = new google.maps.visualization.HeatmapLayer({
+      data: data,
+      map: heatMap,
+    });
+  }
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -53,7 +80,7 @@ function numeroAvisosRecibidos() {
     let avisosRecibidos = document.getElementById('avisos-recibidos')
     const dbRef = ref(database, '/Alertas/Conductor/'+auth.currentUser.uid) 
     onValue(dbRef, (snapshot) => {
-        const data = snapshot.val();
+        const data = snapshot.val()
         const numAvisos = Object.keys(data).length;
         avisosRecibidos.innerHTML = `nº avisos recibidos: ${numAvisos}`;
     })
