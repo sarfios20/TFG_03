@@ -63,12 +63,10 @@ function initMapHeat() {
   
 function handleLocationError(browserHasGeolocation, map) {
     // Handle geolocation error
-    var errorDiv = document.getElementById('error');
-    errorDiv.style.display = 'block';
     if (browserHasGeolocation) {
-      errorDiv.textContent = 'Error: The Geolocation service failed.';
+      console.error('Error: The Geolocation service failed.')
     } else {
-      errorDiv.textContent = 'Error: Your browser doesn\'t support geolocation.';
+      console.error('Error: Your browser doesn\'t support geolocation.')
     }
 }
 
