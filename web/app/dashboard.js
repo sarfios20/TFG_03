@@ -36,7 +36,7 @@ function initMapHeat() {
 }
 
 function heatMapData() {
-    console.log('heatMapData');
+    
     const dbRef = ref(database, '/Conductor/');
     let dataCondutor = {};
     onValue(dbRef, (snapshot) => {
@@ -46,25 +46,23 @@ function heatMapData() {
           dataCondutor[uid] = data[zone][uid];
         }
       }
-  
+      
       const heatmapData = Object.values(dataCondutor).map(item => ({
-        location: new google.maps.LatLng(item.latitude, item.longitude),
-        weight: item.intensity,
+        location: new google.maps.LatLng(item.Lat, item.Lon),
+        weight: 1,
       }));
-  
-      console.log(heatmapData);
-  
-      // Call the function to create the heatmap layer with the data
-      createHeatmapLayer(heatmapData);
+
+      createHeatmapLayer(heatmapData)
     });
   }
 
 function createHeatmapLayer(data) {
+    console.log(data)
     const heatmapLayer = new google.maps.visualization.HeatmapLayer({
-      data: data,
-      map: heatMap,
-    });
-  }
+        data: data,
+        map: heatMap,
+    })
+}
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
