@@ -57,7 +57,6 @@ function heatMapData() {
   }
 
 function createHeatmapLayer(data) {
-    console.log(data)
     const heatmapLayer = new google.maps.visualization.HeatmapLayer({
         data: data,
         map: heatMap,
