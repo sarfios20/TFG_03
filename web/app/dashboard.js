@@ -14,25 +14,62 @@ window.initMaps = function initMaps() {
 }
 
 function initMap() {
-    var center = {lat: 40.73877, lng: -3.8235};
-
-    // Create a new Google Map instance
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: center
-    })
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+  
+        // Create a new Google Map instance
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: center
+        });
+      }, function() {
+        // Handle geolocation error
+        handleLocationError(true, map);
+      });
+    } else {
+      // Browser doesn't support geolocation
+      handleLocationError(false, map);
+    }
 }
-
+  
 function initMapHeat() {
-    var center = {lat: 40.73877, lng: -3.8235};
-
-    // Create a new Google Map instance
-    heatMap = new google.maps.Map(document.getElementById('heat_map'), {
-        zoom: 12,
-        center: center
-    })
-    heatMapData()
-    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+  
+        // Create a new Google Map instance
+        heatMap = new google.maps.Map(document.getElementById('heat_map'), {
+          zoom: 12,
+          center: center
+        });
+        
+        heatMapData();
+      }, function() {
+        // Handle geolocation error
+        handleLocationError(true, heatMap);
+      });
+    } else {
+      // Browser doesn't support geolocation
+      handleLocationError(false, heatMap);
+    }
+}
+  
+function handleLocationError(browserHasGeolocation, map) {
+    // Handle geolocation error
+    var errorDiv = document.getElementById('error');
+    errorDiv.style.display = 'block';
+    if (browserHasGeolocation) {
+      errorDiv.textContent = 'Error: The Geolocation service failed.';
+    } else {
+      errorDiv.textContent = 'Error: Your browser doesn\'t support geolocation.';
+    }
 }
 
 function heatMapData() {
@@ -163,37 +200,34 @@ function padZero(num) {
     return num < 10 ? `0${num}` : num
 }
 
-function selected (selectedDates, dateStr, instance) {
-    
+function selected(selectedDates, dateStr, instance) {
     console.log("Selected date: ", dateStr);
-    console.log(days[dateStr])
-    let positions = []
-    positions = days[dateStr].map(num => ({ lat: num['Lat'], lng: num['Lon'] }))
-    console.log(positions)
-
-    var polyline = new google.maps.Polyline({
-        path: positions,
-        geodesic: true,
-        strokeColor: '#FF0000',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-    })
+    
+    const positions = days[dateStr].map(num => ({ lat: num['Lat'], lng: num['Lon'] }));
+    console.log(positions);
+    
+    const polyline = new google.maps.Polyline({
+      path: positions,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+    
+    polyline.setMap(map);
+    
+    const path = polyline.getPath();
+    let count = 0;
+    const interval = setInterval(() => {
+      count = (count + 1) % path.getLength();
+      const newPath = path.getArray().slice(0, count);
+      polyline.setPath(newPath);
       
-    polyline.setMap(map)
-
-
-    var count = 0;
-    var path = polyline.getPath().getArray();
-    var interval = setInterval(function() {
-    count = (count + 1) % path.length;
-    var newPath = path.slice(0, count);
-    polyline.setPath(newPath);
-    if (count == 0) {
+      if (count === 0) {
         clearInterval(interval);
-    }
+      }
     }, 700);
-}
-
+  }
 const logout = document.getElementById('logout-button')
 
 logout.addEventListener('click', async (e) => {
