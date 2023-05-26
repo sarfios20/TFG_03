@@ -1,11 +1,9 @@
 /* Set the font family for the entire page */
 body {
     font-family: 'Helvetica Neue', sans-serif;
-  }
-  
-  /* Set the background color */
-  body {
     background-color: #F5F5F5;
+    width:1000px;
+    margin:0 auto;
   }
   
   /* Style the headings */
