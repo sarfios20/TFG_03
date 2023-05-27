@@ -1,7 +1,7 @@
 class Zone {
   static String getZone(double latitude, double longitude){
-    double lat = (latitude*100).toInt().ceilToDouble();
-    double lon = (longitude*100).toInt().floorToDouble();
+    double lat = (latitude*100).ceilToDouble();
+    double lon = (longitude*100).floorToDouble();
 
     return "${formatter(lat)};${formatter(lon)}";
   }
