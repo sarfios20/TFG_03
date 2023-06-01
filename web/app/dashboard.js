@@ -52,7 +52,17 @@ function initMapHeat() {
         
         heatMapData();
       }, function() {
-        // Handle geolocation error
+        var center = {
+          lat: 40.37311576907335,
+          lng: -3.919080843374818
+        };
+  
+        // Create a new Google Map instance
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: center
+        });
+        // Handle geolocation erro
         handleLocationError(true, heatMap);
       });
     } else {
