@@ -7,68 +7,40 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-
 let map
 let heatMap
 let days = {}
+let center = {
+  lat: 40.37311576907335,
+  lng: -3.919080843374818
+}
 
 window.initMaps = function initMaps() {
+    setCenter()
     initMap()
     initMapHeat()
 }
 
-function initMap() {
+function setCenter() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-  
-        // Create a new Google Map instance
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: center
-        });
-      }, function() {
-        // Handle geolocation error
-        handleLocationError(true, map);
-      });
-    } else {
-      // Browser doesn't support geolocation
-      handleLocationError(false, map);
+        navigator.geolocation.getCurrentPosition(function(position) { 
+            center = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+        })
     }
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: center
+  })
 }
   
 function initMapHeat() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-  
-        // Create a new Google Map instance
-        heatMap = new google.maps.Map(document.getElementById('heat_map'), {
-          zoom: 12,
-          center: center
-        });
-        
-        heatMapData();
-      }, function() {
-        var center = {
-          lat: 40.37311576907335,
-          lng: -3.919080843374818
-        };
-  
-        // Create a new Google Map instance
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: center
-        });
-        // Handle geolocation erro
-        handleLocationError(true, heatMap);
-      });
-    } else {
-      // Browser doesn't support geolocation
-      handleLocationError(false, heatMap);
-    }
+  heatMap = new google.maps.Map(document.getElementById('heat_map'), {
+    zoom: 12,
+    center: center
+  });
 }
   
 function handleLocationError(browserHasGeolocation, map) {
