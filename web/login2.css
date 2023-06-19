@@ -1,0 +1,112 @@
+/* Set the font family for the entire page */
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #F5F5F5;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+/* Style the headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #333;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+/* Style the links */
+a {
+  color: #FF5722;
+}
+
+/* Style the buttons */
+button, input[type="submit"] {
+  border: none;
+  background-color: #FF5722;
+  color: #FFF;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #FF7043;
+}
+
+/* Style the form inputs */
+input[type="text"], input[type="email"], input[type="password"] {
+  border: none;
+  background-color: #FFF;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* Style for row layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+/* Add this for column layout */
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  margin-bottom: 24px;
+}
+
+/* Add this for column layout in medium screens */
+@media screen and (min-width: 600px) {
+  .column {
+      flex-basis: 50%;
+  }
+}
+
+/* Add this for column layout in large screens */
+@media screen and (min-width: 800px) {
+  .column {
+      flex-basis: 33.33%;
+  }
+}
+
+/* This is for images to be responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style for placeholders */
+.placeholder {
+  background-color: #ddd;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #666;
+  border-radius: 4px;
+}

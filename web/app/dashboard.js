@@ -16,6 +16,7 @@ window.initMaps = function initMaps() {
     setCenter()
     initMap()
     initMapHeat()
+    heatMapData() 
 }
 
 function setCenter() {
