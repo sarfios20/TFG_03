@@ -7,7 +7,7 @@ onAuthStateChanged(auth, async (user) => {
             window.location.href = "dashboard.html"
         }
     } else {
-        if (window.location.pathname !== '/index2.html') {
+        if (window.location.pathname !== '/index.html') {
             window.location.href = "index.html";
         }
     }
