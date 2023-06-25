@@ -7,6 +7,7 @@ body {
   padding: 20px;
 }
 
+
 /* Style the headings */
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
@@ -67,7 +68,9 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 24px;
+  flex-grow: 1;
 }
+
 
 /* Add this for column layout */
 .column {
@@ -75,7 +78,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-basis: 100%;
+  flex: 1;
   margin-bottom: 24px;
 }
 
