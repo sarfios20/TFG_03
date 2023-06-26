@@ -1,6 +1,15 @@
-console.log('heatmap.js loaded');
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js'
+import { signOut } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"
+import { auth } from "./firebase.js"
+import { database } from "./firebase.js"
+import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"
 
+
+console.log('heatmap.js loaded');
+let heatmapLayer;
 var map;
+initMap()
+heatMapData()
 
 function initMap() {
   // Check if the browser supports Geolocation
@@ -10,7 +19,7 @@ function initMap() {
       var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
       // Create the map and center it on the user's location
-      var map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map(document.getElementById('map'), {
         center: userLatLng,
         zoom: 12, // Adjust the zoom level as desired
         styles: [
@@ -122,3 +131,68 @@ function initMap() {
 
 // Attach initMap to the window object
 window.initMap = initMap;
+
+function heatMapData() {
+  const dbRef = ref(database, '/Conductor/');
+  let dataCondutor = {};
+  onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    for (const zone in data) {
+      for (const uid in data[zone]) {
+        dataCondutor[uid] = data[zone][uid];
+        console.log(dataCondutor[uid]);
+      }
+    }
+
+    // Combine close-by data points and increase their weight
+    const combinedData = {};
+    const thresholdDistance = 100; // Adjust this value as needed
+
+    Object.values(dataCondutor).forEach(item => {
+      const location = new google.maps.LatLng(item.Lat, item.Lon);
+      let combined = false;
+
+      for (const key in combinedData) {
+        const existingLocation = combinedData[key].location;
+        const distance = google.maps.geometry.spherical.computeDistanceBetween(location, existingLocation);
+
+        if (distance <= thresholdDistance) {
+          console.log('combined');
+          combinedData[key].weight += 1;
+          combined = true;
+          break;
+        }
+      }
+
+      if (!combined) {
+        const newItem = {
+          location: location,
+          weight: 0.25,
+        };
+        combinedData[location.toString()] = newItem;
+      }
+    });
+
+    const heatmapData = Object.values(combinedData).map(item => ({
+      location: item.location,
+      weight: item.weight,
+    }));
+
+    createHeatmapLayer(heatmapData);
+  });
+}
+
+function createHeatmapLayer(data) {
+  // Remove previous data
+  if (heatmapLayer) {
+    heatmapLayer.setMap(null);
+  }
+
+  // Create new heatmap layer
+  heatmapLayer = new google.maps.visualization.HeatmapLayer({
+    data: data,
+    map: map,
+  });
+
+  heatmapLayer.setMap(map);
+}
