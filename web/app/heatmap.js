@@ -132,6 +132,7 @@ function initMap() {
   }
 }
 
+
 function heatMapData() {
   const dbRef = ref(database, '/Conductor/');
   get(dbRef).then((snapshot) => {
@@ -139,50 +140,11 @@ function heatMapData() {
     for (const zone in data) {
       for (const uid in data[zone]) {
         dataCondutor.set(uid, data[zone][uid]);
-        console.log(dataCondutor.get(uid));
       }
     }
-
-    const combinedData = combineDataPoints(dataCondutor);
-    const heatmapData = Object.values(combinedData).map(item => ({
-      location: item.location,
-      weight: item.weight,
-    }));
-
-    createHeatmapLayer(heatmapData);
+    console.log(dataCondutor);
+    updateHeatmapData();
   });
-}
-
-function combineDataPoints(dataCondutor) {
-  const combinedData = {};
-  const thresholdDistance = 100; // Adjust this value as needed
-
-  Object.values(dataCondutor).forEach(item => {
-    const location = new google.maps.LatLng(item.Lat, item.Lon);
-    let combined = false;
-
-    for (const key in combinedData) {
-      const existingLocation = combinedData[key].location;
-      const distance = google.maps.geometry.spherical.computeDistanceBetween(location, existingLocation);
-
-      if (distance <= thresholdDistance) {
-        console.log('Combined');
-        combinedData[key].weight += 1;
-        combined = true;
-        break;
-      }
-    }
-
-    if (!combined) {
-      const newItem = {
-        location: location,
-        weight: 0.25,
-      };
-      combinedData[location.toString()] = newItem;
-    }
-  });
-
-  return combinedData;
 }
 
 function createHeatmapLayer(data) {
@@ -193,15 +155,22 @@ function createHeatmapLayer(data) {
 
   // Create new heatmap layer
   heatmapLayer = new google.maps.visualization.HeatmapLayer({
-    data: data.map(item => ({
-      location: item.location,
-      weight: item.weight
-    })),
+    data: data,
     map: map,
   });
-
+  
   heatmapLayer.setMap(map);
 }
+
+function updateHeatmapData() {
+  const heatmapData = Array.from(dataCondutor.values()).map(item => ({
+    location: new google.maps.LatLng(item.Lat, item.Lon),
+    weight: 1, // You may adjust this as needed.
+  }));
+
+  createHeatmapLayer(heatmapData);
+}
+
 function listenToDatabaseEvents() {
   const dbRef = ref(database, '/Conductor/');
 
@@ -213,15 +182,8 @@ function listenToDatabaseEvents() {
       console.log('New user added:', uid);
       console.log('User data:', users[uid]);
       dataCondutor.set(uid, users[uid]);
-
-      const combinedData = combineDataPoints(dataCondutor);
-      const heatmapData = Object.values(combinedData).map(item => ({
-        location: item.location,
-        weight: item.weight,
-      }));
-
-      createHeatmapLayer(heatmapData);
     }
+    updateHeatmapData();
   });
 
   // Listen for user location updates
@@ -232,15 +194,8 @@ function listenToDatabaseEvents() {
       console.log('User location updated:', uid);
       console.log('Updated location:', users[uid]);
       dataCondutor.set(uid, users[uid]);
-
-      const combinedData = combineDataPoints(dataCondutor);
-      const heatmapData = Object.values(combinedData).map(item => ({
-        location: item.location,
-        weight: item.weight,
-      }));
-
-      createHeatmapLayer(heatmapData);
     }
+    updateHeatmapData();
   });
 
   // Listen for user deletions
@@ -251,14 +206,7 @@ function listenToDatabaseEvents() {
       console.log('User deleted:', uid);
       console.log('Deleted user data:', users[uid]);
       dataCondutor.delete(uid);
-
-      const combinedData = combineDataPoints(dataCondutor);
-      const heatmapData = Object.values(combinedData).map(item => ({
-        location: item.location,
-        weight: item.weight,
-      }));
-
-      createHeatmapLayer(heatmapData);
     }
+    updateHeatmapData();
   });
 }
