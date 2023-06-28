@@ -3,8 +3,23 @@ body {
   font-family: 'Helvetica Neue', sans-serif;
   background-color: #F5F5F5;
   margin: 0 auto;
-  max-width: 1000px;
   padding: 20px;
+  position: relative; /* Add this to position the pseudo-element relative to the body */
+  overflow: hidden; /* Add this to ensure the pseudo-element doesn't overflow the body */
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('/assets/background.jpg');
+  background-size: cover; /* This will ensure the background image covers the entire body */
+  background-position: center; /* This will center the background image */
+  z-index: -1; /* This will ensure the image stays behind the content */
+  opacity: 0.5; /* This will give the image some transparency */
 }
 
 
