@@ -157,6 +157,7 @@ function createHeatmapLayer(data) {
   heatmapLayer = new google.maps.visualization.HeatmapLayer({
     data: data,
     map: map,
+    radius: 100,
   });
   
   heatmapLayer.setMap(map);
@@ -165,7 +166,7 @@ function createHeatmapLayer(data) {
 function updateHeatmapData() {
   const heatmapData = Array.from(dataCondutor.values()).map(item => ({
     location: new google.maps.LatLng(item.Lat, item.Lon),
-    weight: 1, // You may adjust this as needed.
+    weight: 0.25, 
   }));
 
   createHeatmapLayer(heatmapData);
