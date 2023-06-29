@@ -5,7 +5,7 @@ body {
   margin: 0 auto;
   padding: 20px;
   position: relative; /* Add this to position the pseudo-element relative to the body */
-  overflow: hidden; /* Add this to ensure the pseudo-element doesn't overflow the body */
+  overflow: auto; /* Add this to ensure the pseudo-element doesn't overflow the body */
 }
 
 body::before {
