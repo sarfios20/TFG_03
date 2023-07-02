@@ -123,3 +123,35 @@ footer nav ul li a {
 footer p {
     color: white;
 }
+
+
+/* Hero Section */
+#hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px;
+    background-color: #f2f2f2;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1,
+.hero-text p {
+    margin-bottom: 20px;
+}
+
+.hero-cta {
+    flex: 1;
+}
+
+.hero-image {
+    flex: 1;
+}
+
+.hero-image img {
+    width: 100%;
+    object-fit: contain;
+}
