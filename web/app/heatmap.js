@@ -157,7 +157,6 @@ function createHeatmapLayer(data) {
   heatmapLayer = new google.maps.visualization.HeatmapLayer({
     data: data,
     map: map,
-    radius: 50,
   });
   
   heatmapLayer.setMap(map);
