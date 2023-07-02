@@ -12,8 +12,18 @@ body {
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
     background-color: #1a1a1a;
+}
+
+header .logo-container {
+    flex: 1;
+}
+
+header .main-nav,
+header .user-nav {
+    flex: 2;
 }
 
 header img {
@@ -22,16 +32,21 @@ header img {
 
 header nav ul {
     display: flex;
+    justify-content: space-evenly;
     list-style-type: none;
-}
-
-header nav ul li {
-    margin-left: 20px;
 }
 
 header nav ul li a {
     color: white;
     text-decoration: none;
+}
+
+header .user-nav ul {
+    justify-content: flex-end; /* Aligns Login and Sign Up to the right */
+}
+
+.user-nav ul li {
+    margin-left: 20px; /* Adjust this value to increase or decrease the space */
 }
 
 /* Hero Section */
