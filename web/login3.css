@@ -1,0 +1,110 @@
+/* Reset some default styles */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #1a1a1a;
+}
+
+header img {
+    height: 50px;
+}
+
+header nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Hero Section */
+section:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #f2f2f2;
+}
+
+section:nth-child(2) h1,
+section:nth-child(2) p {
+    margin-bottom: 20px;
+}
+
+/* Features Section */
+#features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    background-color: #fff;
+}
+
+#features div {
+    width: 30%;
+    padding: 20px;
+}
+
+#features img {
+    width: 100%;
+}
+
+/* Statistics Section */
+#statistics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    background-color: #f2f2f2;
+}
+
+/* Download Section */
+#download {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    background-color: #fff;
+}
+
+/* Footer Section */
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #1a1a1a;
+}
+
+footer nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+footer nav ul li {
+    margin-left: 20px;
+}
+
+footer nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer p {
+    color: white;
+}
