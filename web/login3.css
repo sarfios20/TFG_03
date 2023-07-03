@@ -175,3 +175,56 @@ section#privacy-policy .policy-container ul {
 section#privacy-policy .policy-container li {
     margin-bottom: 5px;
 }
+
+/* Download Section */
+section#download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    background-color: #fff;
+}
+
+.download-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.qr-code img {
+    max-width: 200px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.download-info {
+    flex: 1;
+}
+
+.download-info h2 {
+    margin-bottom: 20px;
+}
+
+.download-info p {
+    margin-bottom: 20px;
+}
+
+.play-store-link img {
+    max-width: 200px;
+    height: auto;
+}
+
+.screenshots-container {
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.screenshots-container img {
+    max-width: 300px;
+    height: auto;
+    margin: 10px;
+}
