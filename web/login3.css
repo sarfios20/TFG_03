@@ -313,3 +313,30 @@ section#download {
     font-size: 16px;
     color: #777;
 }
+
+#statistics {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+#statistics div {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#statistics img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+#statistics h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#statistics p {
+    font-size: 16px;
+    color: #777;
+}
