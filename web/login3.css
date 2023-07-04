@@ -345,3 +345,21 @@ section#download {
     width: 100%;
     height: 600px;
 }
+
+#heatmap {
+    max-width: 100%;
+    height: auto;
+    padding: 50px;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+#heatmap h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#heatmap p {
+    font-size: 16px;
+    color: #777;
+}
