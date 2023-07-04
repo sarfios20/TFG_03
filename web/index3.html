@@ -30,21 +30,73 @@
 </header>
 
 <!-- Hero Section -->
-<section id="hero">
-    <div class="hero-text">
-        <h1>Welcome to Our App</h1>
-        <p>Our app helps reduce traffic accidents by tracking users' locations</p>
-    </div>
-    <div class="hero-cta">
-        <a href="https://play.google.com/store/apps/details?id=com.davidhpf.Aviso_Ciclista" target="_blank" rel="noopener noreferrer">
-            <button>Download Now</button>
-        </a>
-    </div>
-    <div class="hero-image">
-        <img src="app-preview.png" alt="App Preview">
+<section id="hero" style="background-image: url('background-image.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">¡Bienvenido a nuestra aplicación!</h1>
+        <p class="hero-description">Ayudamos a reducir los accidentes de tráfico mediante el seguimiento de la ubicación de los usuarios.</p>
+        <div class="hero-cta">
+            <a href="https://play.google.com/store/apps/details?id=com.davidhpf.Aviso_Ciclista" target="_blank" rel="noopener noreferrer" class="hero-button">¡Descárgala ahora!</a>
+        </div>
     </div>
 </section>
+<style>
+#hero {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+}
 
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 100px 20px;
+    color: #fff;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.hero-cta {
+    margin-bottom: 20px;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #ff9900;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #e68a00;
+}
+</style>
 
 <!-- Features Section -->
 <section id="features">
