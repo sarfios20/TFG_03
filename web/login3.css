@@ -340,3 +340,8 @@ section#download {
     font-size: 16px;
     color: #777;
 }
+
+#map {
+    width: 100%;
+    height: 600px;
+}
