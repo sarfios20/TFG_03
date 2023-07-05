@@ -14,11 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('signup-link').addEventListener('click', showSignupModal);
 });
 
-// Function to hide the modal
-function hideModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
-
 // Function to hide the modal when the user clicks outside of it
 window.onclick = function(event) {
     if (event.target.className === 'modal-overlay') {
