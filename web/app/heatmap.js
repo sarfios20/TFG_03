@@ -10,9 +10,9 @@ let dataCondutor = new Map(); // Create a new Map
 let heatmapLayer;
 var map;
 
-//initMap();
-//heatMapData();
-//listenToDatabaseEvents();
+initMap();
+heatMapData();
+listenToDatabaseEvents();
 
 function initMap() {
   // Check if the browser supports Geolocation
