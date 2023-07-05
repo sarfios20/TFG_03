@@ -345,3 +345,7 @@ section#download {
     width: 100%;
     height: 600px;
 }
+
+#login, #signup {
+    display: none;
+}
