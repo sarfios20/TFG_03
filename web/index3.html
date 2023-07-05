@@ -9,42 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
 
-    <script>
-        // Function to show the login modal form
-        function showLoginModal() {
-            document.getElementById('login').style.display = 'block';
-        }
-
-        function hideModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-
-        // Function to show the signup modal form
-        function showSignupModal() {
-            document.getElementById('signup').style.display = 'block';
-        }
-
-        // Add event listeners to the login and signup links
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('login-link').addEventListener('click', showLoginModal);
-            document.getElementById('signup-link').addEventListener('click', showSignupModal);
-        });
-
-        // Function to hide the modal
-        function hideModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Function to hide the modal when the user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target.className === 'modal-overlay') {
-                event.target.parentNode.style.display = 'none';
-            }
-        }
-
-        
-    </script>
-
+    <script src="/app/otro.js" defer></script>
+</head>
 </head>
 <body>
 
@@ -72,34 +38,46 @@
 
 <!-- Login form -->
 <div id="login" class="modal">
-    <div class="modal-overlay"></div>
+    <div id="modal-overlay" class="modal-overlay"></div>
     <form id="signin-form" class="modal-content">
-        <h1>Log In</h1>
-        <label for="signin-email"><b>Email</b></label>
-        <input type="text" id="signin-email" placeholder="Enter Email" required>
-
-        <label for="signin-password"><b>Password</b></label>
-        <input type="password" id="signin-password" placeholder="Enter Password" required>
-
-        <button type="submit" class="signin-button">Log In</button>
+        <div class="modal-header">
+            <span class="close-button" onclick="hideModal('login')">&times;</span>
+            <h1>Log In</h1>
+        </div>
+        <div class="form-group">
+            <label for="signin-email"><b>Email</b></label>
+            <input type="text" id="signin-email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+            <label for="signin-password"><b>Password</b></label>
+            <input type="password" id="signin-password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="signin-button">Log In</button>
+        </div>
     </form>
-    <button type="button" onclick="hideModal('login')">Close</button>
 </div>
 
 <!-- Sign Up form -->
 <div id="signup" class="modal">
-    <div class="modal-overlay"></div>
+    <div id="modal-overlay" class="modal-overlay"></div>
     <form id="signup-form" class="modal-content">
-        <h1>Sign Up</h1>
-        <label for="signup-email"><b>Email</b></label>
-        <input type="text" id="signup-email" placeholder="Enter Email" required>
-
-        <label for="signup-password"><b>Password</b></label>
-        <input type="password" id="signup-password" placeholder="Enter Password" required>
-
-        <button type="submit" class="signup-button">Sign Up</button>
+        <div class="modal-header">
+            <span class="close-button" onclick="hideModal('signup')">&times;</span>
+            <h1>Sign Up</h1>
+        </div>
+        <div class="form-group">
+            <label for="signup-email"><b>Email</b></label>
+            <input type="text" id="signup-email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+            <label for="signup-password"><b>Password</b></label>
+            <input type="password" id="signup-password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="signup-button">Sign Up</button>
+        </div>
     </form>
-    <button type="button" onclick="hideModal('signup')">Close</button>
 </div>
 </header>
 
