@@ -29,6 +29,20 @@
             document.getElementById('login-link').addEventListener('click', showLoginModal);
             document.getElementById('signup-link').addEventListener('click', showSignupModal);
         });
+
+        // Function to hide the modal
+        function hideModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Function to hide the modal when the user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target.className === 'modal-overlay') {
+                event.target.parentNode.style.display = 'none';
+            }
+        }
+
+        
     </script>
 
 </head>
@@ -58,6 +72,7 @@
 
 <!-- Login form -->
 <div id="login" class="modal">
+    <div class="modal-overlay"></div>
     <form id="signin-form" class="modal-content">
         <h1>Log In</h1>
         <label for="signin-email"><b>Email</b></label>
@@ -73,6 +88,7 @@
 
 <!-- Sign Up form -->
 <div id="signup" class="modal">
+    <div class="modal-overlay"></div>
     <form id="signup-form" class="modal-content">
         <h1>Sign Up</h1>
         <label for="signup-email"><b>Email</b></label>
