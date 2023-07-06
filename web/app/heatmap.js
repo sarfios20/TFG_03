@@ -10,6 +10,17 @@ let dataCondutor = new Map(); // Create a new Map
 let heatmapLayer;
 var map;
 
+function readAlertData() {
+  const alertRef = ref(database, '/Alcance/Conductores/HDivVCGzmvWjHJ1DjIYV6gULeRe2');
+  get(alertRef).then((snapshot) => {
+    const data = snapshot.val();
+    console.log(JSON.stringify(data));
+  });
+}
+
+readAlertData();
+
+
 initMap();
 heatMapData();
 listenToDatabaseEvents();
