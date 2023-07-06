@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dashboard {
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  .widget {
+    border: 1px solid #ddd;
+    margin: 1em 0;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .widget-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 800px) {
+    .widget-group {
+      flex-direction: column;
+    }
+  }
