@@ -85,6 +85,6 @@ function selected(selectedDates, dateStr, instance) {
       if (count === 0) {
         clearInterval(interval);
       }
-    }, 700);
+    }, 10);
 }
 
