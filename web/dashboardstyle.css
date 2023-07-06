@@ -42,3 +42,68 @@
   flex: 1; /* Allow each chart to flex and fill the available space */
   margin: 20px;
 }
+
+
+/* Reset some default styles */
+body, h1, h2, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Dashboard Section */
+.dashboard {
+  padding: 50px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.dashboard h1 {
+  margin-bottom: 20px;
+}
+
+.widget {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.widget h2 {
+  margin-bottom: 10px;
+}
+
+.widget p {
+  margin-bottom: 20px;
+}
+
+.widget-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget-group .widget {
+  flex: 1;
+  margin-right: 30px;
+}
+
+.widget-group .widget:last-child {
+  margin-right: 0;
+}
+
+.gauge {
+  height: 200px;
+}
+
+.widget-group .widget p {
+  margin-bottom: 10px;
+}
+
+.widget-group .widget #chart-emitidos,
+.widget-group .widget #chart-recibidos {
+  height: 300px;
+}
+
