@@ -11,14 +11,17 @@ onAuthStateChanged(auth, async (user) => {
 })
 
 function numeroAvisosRecibidos() {
-    let avisosRecibidos = document.getElementById('avisos-recibidos')
-    const dbRef = ref(database, '/Alertas/Conductor/'+auth.currentUser.uid) 
+    let avisosRecibidos = document.getElementById('avisos-recibidos');
+    const dbRef = ref(database, '/Alertas/Conductor/' + auth.currentUser.uid);
     onValue(dbRef, (snapshot) => {
-        const data = snapshot.val()
-        const numAvisos = Object.keys(data).length;
-        avisosRecibidos.innerHTML = `nº avisos recibidos: ${numAvisos}`;
-    })
-}
+      const data = snapshot.val();
+      const timestamps = Object.keys(data).map(Number); // Convert timestamps to numbers
+      avisosRecibidos.innerHTML = `nº avisos recibidos: ${timestamps.length}`;
+  
+      // Call a function to create the line chart using timestamps array
+      createLineChart(timestamps, "chart-recibidos");
+    });
+  }
 
 function numeroAvisosEmitidos() {
     let avisosRecibidos = document.getElementById('avisos-emitidos');
@@ -29,11 +32,11 @@ function numeroAvisosEmitidos() {
       avisosRecibidos.innerHTML = `nº avisos emitidos: ${timestamps.length}`;
   
       // Call a function to create the line chart using timestamps array
-      createLineChart(timestamps);
+      createLineChart(timestamps, "chart-emitidos");
     });
 }
 
-function createLineChart(timestamps) {
+function createLineChart(timestamps, targetElementId) {
     // Set up the dimensions and margins for the chart
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = 600 - margin.left - margin.right;
@@ -70,7 +73,7 @@ function createLineChart(timestamps) {
   
     // Create the SVG container
     const svg = d3
-      .select("#chart")
+      .select(`#${targetElementId}`)
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
