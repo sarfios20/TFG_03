@@ -22,3 +22,23 @@
   stroke: steelblue;
   stroke-width: 2
 }
+
+.widget-group.avisos {
+  display: flex;
+  justify-content: space-between; /* Or 'space-around', 'center', 'flex-start', 'flex-end' depending on your needs */
+  align-items: flex-start; /* Or 'flex-end', 'center', 'baseline', 'stretch' depending on your needs */
+  flex-wrap: wrap; /* Allow the items to wrap onto new lines if necessary */
+  gap: 20px; /* Adjust as needed */
+}
+
+/* Styles for individual widgets */
+.widget-group.avisos .widget {
+  flex: 1; /* Allow each widget to flex and fill the available space. Adjust as needed */
+  /* Add any other styling for your widgets here */
+}
+
+#chart-emitidos,
+#chart-recibidos {
+  flex: 1; /* Allow each chart to flex and fill the available space */
+  margin: 20px;
+}
