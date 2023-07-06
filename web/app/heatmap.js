@@ -24,7 +24,7 @@ function initMap() {
       // Create the map and center it on the user's location
       map = new google.maps.Map(document.getElementById('map'), {
         center: userLatLng,
-        zoom: 12, // Adjust the zoom level as desired
+        zoom: 14, // Adjust the zoom level as desired
         styles: [
           // Apply the provided style array here
           {

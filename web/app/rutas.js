@@ -5,15 +5,11 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-
 
 let map
 let days = {}
-let center = {
-  lat: 40.37311576907335,
-  lng: -3.919080843374818
-}
 
 console.log("rutas.js is loaded")
-initMap()
+initMapRoute()
 
-function initMap() {
+function initMapRoute() {
   // Check if the browser supports Geolocation
   if (navigator.geolocation) {
     // Get the user's current position
@@ -23,7 +19,7 @@ function initMap() {
       // Create the map and center it on the user's location
       map = new google.maps.Map(document.getElementById('mapRuta'), {
         center: userLatLng,
-        zoom: 12, // Adjust the zoom level as desired
+        zoom: 14, // Adjust the zoom level as desired
       });
 
 
@@ -35,16 +31,6 @@ function initMap() {
     // Browser doesn't support Geolocation
     console.log('Error: Your browser doesn\'t support geolocation.');
   }
-}
-
-    
-function handleLocationError(browserHasGeolocation, map) {
-    // Handle geolocation error
-    if (browserHasGeolocation) {
-      console.error('Error: The Geolocation service failed.')
-    } else {
-      console.error('Error: Your browser doesn\'t support geolocation.')
-    }
 }
 
 function calendario(){
