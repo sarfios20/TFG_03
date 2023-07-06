@@ -132,20 +132,28 @@ function initMap() {
   }
 }
 
+document.getElementById("heatmap-selector").addEventListener('change', () => {
+  dataCondutor.clear(); // Clears the previous heatmap data
+  heatMapData();
+});
+
+
 
 function heatMapData() {
-  const dbRef = ref(database, '/Conductor/');
+  let selectedOption = document.getElementById("heatmap-selector").value;
+  const dbRef = ref(database, `/${selectedOption}/`);
   get(dbRef).then((snapshot) => {
-    const data = snapshot.val();
-    for (const zone in data) {
-      for (const uid in data[zone]) {
-        dataCondutor.set(uid, data[zone][uid]);
+      const data = snapshot.val();
+      for (const zone in data) {
+          for (const uid in data[zone]) {
+              dataCondutor.set(uid, data[zone][uid]);
+          }
       }
-    }
-    console.log(dataCondutor);
-    updateHeatmapData();
+      console.log(dataCondutor);
+      updateHeatmapData();
   });
 }
+
 
 function createHeatmapLayer(data) {
   // Remove previous data

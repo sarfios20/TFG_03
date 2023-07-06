@@ -101,9 +101,19 @@
         <div id="heatmap">
             <h2>Mapa de calor</h2>
             <p>Visualiza los incidentes en un mapa de calor para identificar áreas de mayor riesgo.</p>
+
+            <!-- Dropdown menu -->
+            <label for="heatmap-selector">Seleccione tipo:</label>
+            <select id="heatmap-selector">
+                <option value="Ciclista">Ciclista</option>
+                <option value="Conductor">Conductor</option>
+                <option value="Incidente">Incidente</option>
+            </select>
+
             <div id="map" style="width: 100%;"></div>
         </div>
     </div>
+
 
     <!-- Reducción de velocidad Widgets -->
     <div class="widget-group reduccion-velocidad">
