@@ -11,30 +11,32 @@ let center = {
 }
 
 console.log("rutas.js is loaded")
-initMaps()
+initMap()
 
-function initMaps() {
-    setCenter()
-    initMap()
-}
-
-function setCenter() {
+function initMap() {
+  // Check if the browser supports Geolocation
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) { 
-      center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      }
-    })
+    // Get the user's current position
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      // Create the map and center it on the user's location
+      map = new google.maps.Map(document.getElementById('mapRuta'), {
+        center: userLatLng,
+        zoom: 12, // Adjust the zoom level as desired
+      });
+
+
+    }, function() {
+      // Handle Geolocation error
+      console.log('Error: The Geolocation service failed.');
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    console.log('Error: Your browser doesn\'t support geolocation.');
   }
 }
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById('mapRuta'), {
-    zoom: 12,
-    center: center
-  })
-}
     
 function handleLocationError(browserHasGeolocation, map) {
     // Handle geolocation error
