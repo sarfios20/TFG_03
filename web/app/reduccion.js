@@ -2,6 +2,22 @@ import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"
 import { auth, database } from "./firebase.js"
 
+let reduccionGauge = new JustGage({
+    id: "reduccion-gauge",
+    value: 0,
+    min: 0,
+    max: 100,
+    title: "Reducción de velocidad"
+});
+
+let shameGauge = new JustGage({
+    id: "shame-gauge",
+    value: 0,
+    min: 0,
+    max: 100,
+    title: "Reducción de velocidad"
+});
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         calculateReduction('/Alcance/Conductores/', 'shame')
@@ -23,6 +39,13 @@ function calculateReduction(path, elementId) {
         }
 
         reducciónMedia = Math.round(reducciónMedia/(Object.keys(data).length))
+
+        if(elementId == 'reduccion'){
+            reduccionGauge.refresh(reducciónMedia * 3.6)
+        }else{
+            shameGauge.refresh(reducciónMedia * 3.6)
+        }
+
         element.innerText = `reducción de velocidad: ${reducciónMedia * 3.6} km/h`
     });
 }
