@@ -1,30 +1,14 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .dashboard {
-    width: 90%;
-    max-width: 1200px;
-  }
-  
-  .widget {
-    border: 1px solid #ddd;
-    margin: 1em 0;
-    padding: 1em;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .widget-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  @media (max-width: 800px) {
-    .widget-group {
-      flex-direction: column;
-    }
-  }
+/* Styles for the 'reduccion-velocidad' container */
+.widget-group.reduccion-velocidad {
+  display: flex;
+  justify-content: space-between; /* Or 'space-around', 'center', 'flex-start', 'flex-end' depending on your needs */
+  align-items: center; /* Or 'flex-start', 'flex-end', 'baseline', 'stretch' depending on your needs */
+  flex-wrap: wrap; /* Allow the items to wrap onto new lines if necessary */
+  gap: 20px; /* Adjust as needed */
+}
+
+/* Styles for individual widgets */
+.widget-group.reduccion-velocidad .widget {
+  flex: 1; /* Allow each widget to flex and fill the available space. Adjust as needed */
+  /* Add any other styling for your widgets here */
+}
