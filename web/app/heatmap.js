@@ -149,7 +149,6 @@ function heatMapData() {
               dataCondutor.set(uid, data[zone][uid]);
           }
       }
-      console.log(dataCondutor);
       updateHeatmapData();
   });
 }
@@ -187,8 +186,6 @@ function listenToDatabaseEvents() {
     const zone = snapshot.key;
     const users = snapshot.val();
     for (const uid in users) {
-      console.log('New user added:', uid);
-      console.log('User data:', users[uid]);
       dataCondutor.set(uid, users[uid]);
     }
     updateHeatmapData();
@@ -199,8 +196,6 @@ function listenToDatabaseEvents() {
     const zone = snapshot.key;
     const users = snapshot.val();
     for (const uid in users) {
-      console.log('User location updated:', uid);
-      console.log('Updated location:', users[uid]);
       dataCondutor.set(uid, users[uid]);
     }
     updateHeatmapData();
@@ -211,8 +206,6 @@ function listenToDatabaseEvents() {
     const zone = snapshot.key;
     const users = snapshot.val();
     for (const uid in users) {
-      console.log('User deleted:', uid);
-      console.log('Deleted user data:', users[uid]);
       dataCondutor.delete(uid);
     }
     updateHeatmapData();
