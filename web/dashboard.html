@@ -1,53 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Google Maps -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGoaO3KdtTWSkpd9C3U9whxkGeinP6G9s&libraries=visualization" async defer></script>
+    <meta charset="UTF-8">
+    <title>Aviso Ciclista</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="dashboardstyle.css">
+
+    <script src="./app/heatmap.js" type="module" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGoaO3KdtTWSkpd9C3U9whxkGeinP6G9s&callback=initMap&libraries=visualization,geometry" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 
-    <!-- Calendario -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" type="text/css" href="new.css">
     
-    <script src="main.js" type="module" defer></script>
-    <script src="./app/dashboard.js" type="module"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/raphael/2.1.4/raphael-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/justgage/1.0.1/justgage.min.js"></script>
+   
+    <script src="/app/firebase.js" type="module" defer></script>
+    <script src="/app/auth.js" type="module" defer></script>
+    
+    <script src="/app/modal.js" defer></script>
+    <script src="/app/rutas.js" type="module" defer></script>
+    <script src="/app/reduccion.js" type="module" defer></script>
+    <script src="/app/avisos.js" type="module" defer></script>
 </head>
-<body onload="initMaps()">
-    <div class="container">
-        <div class="row">
-          <div class="square">
-            <div class="content">
-              <h2>coche</h2>
-              <p id="avisos-recibidos">nº avisos recibidos</p>
-              <p id="shame">reducción de velocidad</p>
-            </div>
-          </div>
-          <div class="square">
-            <div class="content">
-              <h2>Bici</h2>
-              <p id="avisos-emitidos">nº avisos emitidos</p>
-              <p id="reduccion">reducción de velocidad</p>
-            </div>
-          </div>
-          <div class="square">
-            <div class="content">
-              <h2>Calendario</h2>
-              <div style="visibility: hidden;" id="datepicker"></div>
-            </div>
-          </div>
+<body>
+
+<!-- Header Section -->
+<header>
+    <div class="logo-container">
+        <a href="index.html"><img src="/assets/playstore.png" alt="Play Store Logo"></a>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li> <!-- Home link added -->
+            <li><a href="#features">Features</a></li>
+            <li><a href="#statistics">Statistics</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="/dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+    <!-- User-related links -->
+<nav class="user-nav">
+    <ul id="menu-list">
+        <li><a href="#login" id="login-link">Log In</a></li>
+        <li><a href="#signup" id="signup-link">Sign Up</a></li>
+    </ul>
+</nav>
+
+<!-- Login form -->
+<div id="login" class="modal">
+    <div id="modal-overlay" class="modal-overlay"></div>
+    <form id="signin-form" class="modal-content">
+        <div class="modal-header">
+            <span class="close-button" onclick="hideModal('login')">&times;</span>
+            <h1>Log In</h1>
+        </div>
+        <div class="form-group">
+            <label for="signin-email"><b>Email</b></label>
+            <input type="text" id="signin-email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+            <label for="signin-password"><b>Password</b></label>
+            <input type="password" id="signin-password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="signin-button">Log In</button>
+        </div>
+    </form>
+</div>
+
+<!-- Sign Up form -->
+<div id="signup" class="modal">
+    <div id="modal-overlay" class="modal-overlay"></div>
+    <form id="signup-form" class="modal-content">
+        <div class="modal-header">
+            <span class="close-button" onclick="hideModal('signup')">&times;</span>
+            <h1>Sign Up</h1>
+        </div>
+        <div class="form-group">
+            <label for="signup-email"><b>Email</b></label>
+            <input type="text" id="signup-email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+            <label for="signup-password"><b>Password</b></label>
+            <input type="password" id="signup-password" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="signup-button">Sign Up</button>
+        </div>
+    </form>
+</div>
+</header>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+    <h1>Dashboard</h1>
+
+    <!-- Rutas Widget -->
+    <div class="widget rutas">
+        <h2>Calendario</h2>
+        <div class="flex-container">
+            <div id="datepicker"></div>
+            <p>Haz clic en una fecha para ver la animación de tu recorrido en ese día.</p>
         </div>
         <br>
-        <!-- Checkear -->
-        <div id="map" style="height: 500px"></div>
-        <br>
-        <div id="heat_map" style="height: 500px"></div>
-        <input id='logout-button' type="submit" value="logout">
+        <div id="mapRuta" style="width: 100%; height: 500px;"></div>
     </div>
-    <br>
-    <br>
+
+    <!-- Heatmap Widget -->
+    <div class="widget heatmap">
+        <div id="heatmap">
+            <h2>Mapa de calor</h2>
+            <p>Visualiza los incidentes en un mapa de calor para identificar áreas de mayor riesgo.</p>
+
+            <!-- Dropdown menu -->
+            <label for="heatmap-selector">Seleccione tipo:</label>
+            <select id="heatmap-selector">
+                <option value="Ciclista">Ciclista</option>
+                <option value="Conductor">Conductor</option>
+                <!--<option value="Incidente">Incidente</option>-->
+            </select>
+
+            <div id="map" style="width: 100%;"></div>
+        </div>
+    </div>
+
+
+    <!-- Reducción de velocidad Widgets -->
+    <div class="widget-group reduccion-velocidad">
+      <div class="widget reduccion-velocidad-ciclista">
+        <!-- Your Reducción de velocidad (Ciclista) widget here -->
+        <p id="reduccion">reducción de velocidad</p>
+        <div id="reduccion-gauge" class="gauge"></div>
+      </div>
+      <div class="widget reduccion-velocidad-conductor">
+        <!-- Your Reducción de velocidad (Conductor) widget here -->
+        <p id="shame">reducción de velocidad</p>
+        <div id="shame-gauge" class="gauge"></div>
+      </div>
+    </div>
+
+    <!-- Avisos Widgets -->
+    <div class="widget-group avisos">
+      <div class="widget avisos-emitidos-ciclista">
+        <!-- Your Avisos emitidos (Ciclista) widget here -->
+        <p id="avisos-emitidos">nº avisos emitidos</p>
+        <div id="chart-emitidos"></div>
+      </div>
+      <div class="widget avisos-recibidos-conductor">
+        <!-- Your Avisos recibidos (Conductor) widget here -->
+        <p id="avisos-recibidos">nº avisos recibidos</p>
+        <div id="chart-recibidos"></div>
+      </div>
+    </div>
+  </section>
+
+
+
+<!-- Footer Section -->
+<footer>
+    <!-- Repeat the nav structure from the header here -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li> <!-- Home link added -->
+            <li><a href="#features">Features</a></li>
+            <li><a href="#statistics">Statistics</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/dashboard.html">Dashboard</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+        </ul>
+    </nav>
+    <!-- Include contact info here -->
+    <p>Contact Us: info@example.com</p>
+</footer>
+
 </body>
 </html>
