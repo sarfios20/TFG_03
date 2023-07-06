@@ -1,5 +1,4 @@
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js'
-import { signOut } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"
 import { auth } from "./firebase.js"
 import { database } from "./firebase.js"
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"
@@ -26,6 +25,7 @@ function numeroAvisosEmitidos() {
     const dbRef = ref(database, '/Alertas/Ciclista/'+auth.currentUser.uid) 
     onValue(dbRef, (snapshot) => {
         const data = snapshot.val();
+        console.log(data)
         const numAvisos = Object.keys(data).length;
         avisosRecibidos.innerHTML = `nº avisos emitidos: ${numAvisos}`;
     })
