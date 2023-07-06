@@ -12,3 +12,13 @@
   flex: 1; /* Allow each widget to flex and fill the available space. Adjust as needed */
   /* Add any other styling for your widgets here */
 }
+
+#chart {
+  margin: 20px;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2
+}
