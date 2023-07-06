@@ -5,7 +5,7 @@
     <title>Aviso Ciclista</title>
 
     <link rel="stylesheet" href="login3.css">
-    <link rel="stylesheet" href="dashboardstyle.css">
+    <!-- <link rel="stylesheet" href="dashboardstyle.css">-->
 
     <script src="./app/heatmap.js" type="module" defer></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGoaO3KdtTWSkpd9C3U9whxkGeinP6G9s&callback=initMap&libraries=visualization,geometry" async defer></script>
@@ -98,7 +98,11 @@
 
     <!-- Heatmap Widget -->
     <div class="widget heatmap">
-      <!-- Your Heatmap widget here -->
+        <div id="heatmap">
+            <h2>Mapa de calor</h2>
+            <p>Visualiza los incidentes en un mapa de calor para identificar áreas de mayor riesgo.</p>
+            <div id="map" style="width: 100%;"></div>
+        </div>
     </div>
 
     <!-- Reducción de velocidad Widgets -->
