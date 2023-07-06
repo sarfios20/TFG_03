@@ -42,7 +42,6 @@ signupForm.addEventListener('submit', async (e) => {
 });
 
 // Function to switch to sign out
-// Function to switch to sign out
 function switchToSignOut() {
     document.getElementById('login-link').parentElement.remove();
     document.getElementById('signup-link').parentElement.remove();
