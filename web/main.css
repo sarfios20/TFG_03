@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 /* Reset some default styles */
 body, h1, h2, p, ul {
     margin: 0;
@@ -104,6 +110,9 @@ section#statistics {
     align-items: center;
     padding: 50px;
     background-color: #f2f2f2;
+    background-image: url('/assets/bg.png');
+    background-size: cover;
+    background-position: center;
 }
 
 /* Download Section */
