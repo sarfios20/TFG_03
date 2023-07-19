@@ -339,7 +339,8 @@ class _MapScreenState extends ConsumerState<MapScreen> with WidgetsBindingObserv
   }
 
   void alert(){
-    FlutterRingtonePlayer.playNotification();
+    FlutterRingtonePlayer.playNotification(volume: 100);
+    //FlutterRingtonePlayer.playAlarm(looping: false);
   }
 
   void checkAll(){
