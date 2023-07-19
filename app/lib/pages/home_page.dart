@@ -357,7 +357,7 @@ class _MapScreenState extends ConsumerState<MapScreen> with WidgetsBindingObserv
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(12, 12)),
-        'assets/pedal_bike.png')
+        'assets/bike.png')
         .then((d) {
       cyclistIcon = d;
     });
