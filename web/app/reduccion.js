@@ -38,14 +38,14 @@ function calculateReduction(path, elementId) {
             reducciónMedia = reducciónMedia + speed_alerta - speed_alcance;           
         }
 
-        reducciónMedia = Math.round(reducciónMedia/(Object.keys(data).length))
+        reducciónMedia = reducciónMedia/(Object.keys(data).length)
 
         if(elementId == 'reduccion'){
-            reduccionGauge.refresh(reducciónMedia * 3.6)
+            reduccionGauge.refresh(Math.round(reducciónMedia * 3.6))
         }else{
-            shameGauge.refresh(reducciónMedia * 3.6)
+            shameGauge.refresh(Math.round(reducciónMedia * 3.6))
         }
 
-        element.innerText = `reducción de velocidad: ${reducciónMedia * 3.6} km/h`
+        element.innerText = `reducción de velocidad: ${Math.round(reducciónMedia * 3.6)} km/h`
     });
 }
