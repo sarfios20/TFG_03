@@ -39,10 +39,19 @@
 
 #chart-emitidos,
 #chart-recibidos {
-  flex: 1; /* Allow each chart to flex and fill the available space */
-  margin: 20px;
+  display: flex;
+  justify-content: center; /* Align horizontally in the center */
+  align-items: center; /
+  position: relative; /* Add this */
+  width: 100%; /* Ensure the container takes up all available width */
+  height: 100%; /* Ensure the container takes up all available height */
+  /* Rest of your styles */
 }
 
+svg {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 /* Reset some default styles */
 body, h1, h2, p, ul {
